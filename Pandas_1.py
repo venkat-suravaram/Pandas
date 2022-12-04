@@ -79,4 +79,29 @@ Sex             object
 Age            float64
 """
 print(df.describe()) # More details about the column
+"""OP:
+PassengerId    Survived      Pclass  ...       SibSp       Parch        Fare
+count   891.000000  891.000000  891.000000  ...  891.000000  891.000000  891.000000
+mean    446.000000    0.383838    2.308642  ...    0.523008    0.381594   32.204208
+std     257.353842    0.486592    0.836071  ...    1.102743    0.806057   49.693429
+min       1.000000    0.000000    1.000000  ...    0.000000    0.000000    0.000000
+25%     223.500000    0.000000    2.000000  ...    0.000000    0.000000    7.910400
+50%     446.000000    0.000000    3.000000  ...    0.000000    0.000000   14.454200
+75%     668.500000    1.000000    3.000000  ...    1.000000    0.000000   31.000000
+max     891.000000    1.000000    3.000000  ...    8.000000    6.000000  512.329200
+
+[8 rows x 7 columns]
+"""
+print(df.shape) # shape of data frame
+"""OP: (891, 12)"""
+print(df[15:17])
+"""OP:
+    PassengerId  Survived  Pclass  ...    Fare Cabin  Embarked
+15           16         1       2  ...  16.000   NaN         S
+16           17         0       3  ...  29.125   NaN         Q
+[2 rows x 12 columns]
+
+"""
+print(df.Fare) # Accessing column
+print(df[['Fare','Age']]) # Accessing multiple columns
 
