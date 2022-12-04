@@ -7,6 +7,10 @@ pd.DataFrame
 # 1. Series
         Series is a 1-dimentional data type
 # 2. DataFrame
+        # in DataFrame you get result in Horizanl manner
+        # DataFrame Datatype having more than 2-dimentions
+    Dimentions nothing but number of columns
+    
 """
 l=[1,2,3,4]
 print(type(l))
@@ -48,3 +52,31 @@ print(df1)
 0  1  2  3  4  5.0
 1  5  6  7  8  NaN
 """
+
+# example of readability of a source data using pandas - Read CSV data
+# Read Dataset
+df=pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+print(df)
+''' op:
+     PassengerId  Survived  Pclass  ...     Fare Cabin  Embarked
+0              1         0       3  ...   7.2500   NaN         S
+1              2         1       1  ...  71.2833   C85         C
+2              3         1       3  ...   7.9250   NaN         S
+'''
+
+print(df.head())  # display top 5 rows
+print(df.head(10)) # display top 10 rows
+print(df.tail()) # display bottom 5 rows
+print(df.tail(2)) #Display botton 2 rows
+
+print(df.dtypes) ## Data types of each column
+"""OP:
+PassengerId      int64
+Survived         int64
+Pclass           int64
+Name            object
+Sex             object
+Age            float64
+"""
+print(df.describe()) # More details about the column
+
