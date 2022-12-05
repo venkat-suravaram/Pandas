@@ -69,3 +69,12 @@ Convert to files:
     df.to_csv('new_purchases.csv')
     df.to_json('new_purchases.json')
     df.to_sql('new_purchases', con)
+
+look at getting data by rows.
+
+    By rows
+    For rows, we have two options:
+        .loc - locates by name
+        .iloc- locates by numerical index
+    movie_subset = movies_df.loc['Prometheus':'Sing']
+    movie_subset = movies_df.iloc[1:4]
