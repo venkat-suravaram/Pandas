@@ -10,7 +10,7 @@ pd.DataFrame
         # in DataFrame you get result in Horizanl manner
         # DataFrame Datatype having more than 2-dimentions
     Dimentions nothing but number of columns
-    
+nan value considered as null    
 """
 l=[1,2,3,4]
 print(type(l))
@@ -99,9 +99,84 @@ print(df[15:17])
     PassengerId  Survived  Pclass  ...    Fare Cabin  Embarked
 15           16         1       2  ...  16.000   NaN         S
 16           17         0       3  ...  29.125   NaN         Q
-[2 rows x 12 columns]
-
-"""
+[2 rows x 12 columns] """
 print(df.Fare) # Accessing column
 print(df[['Fare','Age']]) # Accessing multiple columns
+
+print(df['Pclass'].unique()) # Display unique values in the column
+"""OP: [3 1 2]"""
+print(df['Pclass'].describe())
+
+print(df.loc[100]) # Display specific row
+print(df.loc[100:105]) # Display multiple rows
+print(df.iloc[100])
+print(df.set_index('PassengerId'))  # Indexed passengerId for filter
+"""OP:
+             Survived  Pclass  ... Cabin Embarked
+PassengerId                    ...               
+1                   0       3  ...   NaN        S
+2                   1       1  ...   C85        C
+3                   1       3  ...   NaN        S
+"""
+print(df.set_index('PassengerId', inplace=True))  #
+print(df.isnull()) # find null values
+print(df.isnull().sum())
+"""OP:
+Survived      0
+Pclass        0
+Name          0
+Sex           0
+Age         177
+SibSp         0
+Parch         0
+Ticket        0
+Fare          0
+Cabin       687
+Embarked      2
+dtype: int64     """
+
+# Create a new column
+df['new_col'] = df['Survived'] + df['Pclass']
+print(df.head())
+
+#===========================================================
+# Delete a column
+print(df.drop('new_col', axis=1)) # What is axis=1 ?  bydefault axis=0 row , axis=1 -> column
+
+#==========================
+#==
+# Group By
+
+
+## Merging two DataFrames
+dataframe1={'name': ['jai',"ram"],
+     'age':[23,45]  }
+dataframe2={'name': ['jai2',"ram2"],
+     'age':[232,452]  }
+df1=pd.DataFrame(dataframe1)
+df2=pd.DataFrame(dataframe2)
+print(df1,df2)
+"""OP:
+  name  age
+0  jai   23
+1  ram   45    name  age
+0  jai2  232
+1  ram2  452
+"""
+dataframe1={'name': ['jai',"ram"],
+     'age':[23,45]  }
+dataframe2={'name': ['jai2',"ram2"],
+     'age':[232,452]  }
+df1=pd.DataFrame(dataframe1, index=[0,1])
+df2=pd.DataFrame(dataframe2, index=[2,3])
+print(df1,df2)
+###########  Merging dataframe using pd.concat()
+df_concat=[df1,df2]
+result=pd.concat(df_concat)
+print(result)
+"""   name  age
+0   jai   23
+1   ram   45
+2  jai2  232
+3  ram2  452"""
 
