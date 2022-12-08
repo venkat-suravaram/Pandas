@@ -2,7 +2,7 @@ import os
 print(os.getcwd())
 #Q1. How do you load a CSV file into a Pandas DataFrame?
 import pandas as pd
-df=pd.read_csv('C:\DE\Python_WorkSpace\Pandas\student.csv')
+df=pd.read_csv('C:\DE\Python_WorkSpace\Pandas\Assignments\student.csv')
 print(df)
 
 # Q2. How do you check the data type of a column in a Pandas DataFrame?
@@ -133,3 +133,79 @@ Row concat display:
 """
 
 ## Q10. How do you merge two Pandas DataFrames on a specific column?
+# creating a dataframe
+df1 = pd.DataFrame({'Name': ['Raju', 'Rani', 'Geeta', 'Sita', 'Sohit'],
+                    'Marks': [80, 90, 75, 88, 59]})
+
+# creating another dataframe with different data
+df2 = pd.DataFrame({'Name': ['Raju', 'Divya', 'Geeta', 'Sita'],
+                    'Grade': ['A', 'A', 'B', 'A'],
+                    'Rank': [3, 1, 4, 2],
+                    'Gender': ['Male', 'Female', 'Female', 'Female']})
+
+print("\n",df1,"\n",df2)
+print("\n",df1.merge(df2[['Name','Grade','Gender']]))
+print("\n",df1.merge(df2[['Name','Grade','Gender']], on='Name', how='left'))
+"""OP:
+     Name  Marks Grade  Gender
+0   Raju     80     A    Male
+1  Geeta     75     B  Female
+2   Sita     88     A  Female
+
+     Name  Marks Grade  Gender
+0   Raju     80     A    Male
+1   Rani     90   NaN     NaN
+2  Geeta     75     B  Female
+3   Sita     88     A  Female
+4  Sohit     59   NaN     NaN
+"""
+
+## Q11. How do you group data in a Pandas DataFrame by a specific column and apply an aggregation function?
+
+## Q12. How do you pivot a Pandas DataFrame?
+print(df.pivot('name','id','mark'))
+"""OP:
+id             1     2     3     4     5   ...    10    11    12  13    14
+name                                       ...                            
+Alex John     NaN   NaN   NaN   NaN   NaN  ...   NaN   NaN   NaN NaN   NaN
+Arnold        NaN   NaN  55.0   NaN   NaN  ...   NaN   NaN   NaN NaN   NaN
+Asruid        NaN   NaN   NaN   NaN   NaN  ...   NaN   NaN   NaN NaN   NaN
+Big John      NaN   NaN   NaN   NaN   NaN  ...  55.0   NaN   NaN NaN   NaN
+"""
+
+## Q13. How do you change the data type of a column in a Pandas DataFrame?
+print("\n Data types before change: \n",df.dtypes)
+df=df.astype(str)
+print("\n Data types after change: \n",df.dtypes)
+"""OP:
+ Data types before change: 
+ id         int64
+name      object
+grade     object
+mark     float64
+dtype: object
+
+ Data types after change: 
+ id       object
+name     object
+grade    object
+mark     object
+dtype: object
+"""
+
+## Q14. How do you sort a Pandas DataFrame by a specific column?
+df_sort=df.sort_values(by='name')
+print("\n Sorting order: ",df_sort)
+"""OP:
+Sorting order:      id         name  grade  mark
+5    6    Alex John   Four  55.0
+2    3       Arnold  Three  55.0
+7    8       Asruid   Five  85.0
+9   10     Big John   Four  55.0
+"""
+
+## Q15. How do you create a copy of a Pandas DataFrame?
+df_copy=df.copy(deep=False)
+print("\n copy only structure: \n", df_copy)
+df_copy_data=df.copy(deep=True)
+print("\n copy only structure & Data: \n", df_copy_data)
