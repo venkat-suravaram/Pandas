@@ -161,7 +161,17 @@ print("\n",df1.merge(df2[['Name','Grade','Gender']], on='Name', how='left'))
 """
 
 ## Q11. How do you group data in a Pandas DataFrame by a specific column and apply an aggregation function?
-
+print(df.groupby('mark')['name'].count())
+"""OP:
+mark
+55.0    3
+60.0    2
+75.0    1
+78.0    2
+85.0    2
+88.0    1
+89.0    1
+94.0    1"""
 ## Q12. How do you pivot a Pandas DataFrame?
 print(df.pivot('name','id','mark'))
 """OP:
@@ -209,3 +219,35 @@ df_copy=df.copy(deep=False)
 print("\n copy only structure: \n", df_copy)
 df_copy_data=df.copy(deep=True)
 print("\n copy only structure & Data: \n", df_copy_data)
+
+## Q16. How do you filter rows of a Pandas DataFrame by multiple conditions?
+# filter dataframe
+print(df.head())
+print(df.dtypes)
+convert_dict = { 'id': int, 'mark': float }  # Type conversion
+df=df.astype(convert_dict)
+print(df.dtypes)
+print(df.loc[(df['mark']>=70.0) & (df['id']>1), ['name','mark']])
+
+## Q17. How do you calculate the mean of a column in a Pandas DataFrame?
+print(df['mark'].mean())
+
+## Q18. How do you calculate the standard deviation of a column in a Pandas DataFrame?
+print(df['mark'].std())
+## Q19. How do you calculate the correlation between two columns in a Pandas DataFrame?
+result=df['id'].corr(df['mark'])
+print("correlation between two columns: ",result)
+
+## Q20. How do you select specific columns in a DataFrame using their labels?
+print(df.loc[:,['name','mark']])
+## Q21. How do you select specific rows in a DataFrame using their indexes?
+print(df.iloc[[1,2,3]])
+## Q22. How do you sort a DataFrame by a specific column?
+print(df.sort_values(by='name'))
+## Q23. How do you create a new column in a DataFrame based on the values of another column?
+df['new_col'] = df['id'] + df['mark']
+print(df.head())
+## Q24. How do you remove duplicates from a DataFrame?
+print(df.drop_duplicates(subset='mark'))
+## Q25. What is the difference between .loc and .iloc in Pandas?
+    # both used for slicing the data, iloc() is index based selecting method.
