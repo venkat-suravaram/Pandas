@@ -96,3 +96,7 @@ print(" adding new column called banana")
 data['banana']=pd.Series([1,2,3,4])
 purchases = pd.DataFrame(data)
 print(purchases)
+
+
+
+ 
